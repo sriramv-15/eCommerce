@@ -39,10 +39,11 @@ CREATE TABLE categories(
 
 CREATE TABLE orders(
     order_id INT PRIMARY KEY AUTO_INCREMENT,
-    customer_id INT ON DELETE SET NULL,
+    customer_id INT,
     total_amount DECIMAL(10,2),
     order_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    order_status ENUM('pending', 'shipped', 'delivered', 'cancelled') DEFAULT 'pending'
+    order_status ENUM('pending', 'shipped', 'delivered', 'cancelled') DEFAULT 'pending',
+    FOREIGN KEY(customer_id) REFERENCES customers(customer_id) ON DELETE SET NULL
 );
 
 CREATE TABLE order_items(
