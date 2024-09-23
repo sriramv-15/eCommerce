@@ -2,14 +2,14 @@ CREATE DATABASE IF NOT EXISTS eCommerce;
 USE eCommerce;
 
 DROP TABLE IF EXISTS customer,
-					 product,
-					 orders,
+		     product,
+		     orders,
                      categories,
                      order_items,
                      payments;
                      
 CREATE TABLE customers(
-	customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     email VARCHAR(50),
@@ -19,7 +19,7 @@ CREATE TABLE customers(
 );
 
 CREATE TABLE products(
-	product_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(30) NOT NULL,
     price DECIMAL(10,2),
     stock_quantity INT NOT NULL DEFAULT 0,
@@ -29,13 +29,13 @@ CREATE TABLE products(
 );
 
 CREATE TABLE categories(
-	category_id INT PRIMARY KEY AUTO_INCREMENT,
+    category_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     description TEXT
 );
 
 CREATE TABLE orders(
-	order_id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT PRIMARY KEY AUTO_INCREMENT,
     customer_id INT,
     total_amount DECIMAL(10,2),
     order_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -43,7 +43,7 @@ CREATE TABLE orders(
 );
 
 CREATE TABLE order_items(
-	order_item_id INT PRIMARY KEY AUTO_INCREMENT,
+    order_item_id INT PRIMARY KEY AUTO_INCREMENT,
     order_id INT,
     product_id INT,
     quantity INT NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE order_items(
 
 
 CREATE TABLE payments(
-	payment_id INT PRIMARY KEY AUTO_INCREMENT,
+    payment_id INT PRIMARY KEY AUTO_INCREMENT,
     order_id INT,
     amount DECIMAL (10,2) NOT NULL,
     payment_method ENUM ('card', 'upi', 'cash on delivery'),
