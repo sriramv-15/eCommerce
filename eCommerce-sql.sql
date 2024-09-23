@@ -39,7 +39,7 @@ CREATE TABLE categories(
 
 CREATE TABLE orders(
     order_id INT PRIMARY KEY AUTO_INCREMENT,
-    customer_id INT,
+    customer_id INT ON DELETE SET NULL,
     total_amount DECIMAL(10,2),
     order_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     order_status ENUM('pending', 'shipped', 'delivered', 'cancelled') DEFAULT 'pending'
