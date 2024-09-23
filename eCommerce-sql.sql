@@ -1,4 +1,5 @@
 CREATE DATABASE IF NOT EXISTS eCommerce;
+
 USE eCommerce;
 
 DROP TABLE IF EXISTS customer,
@@ -25,13 +26,15 @@ CREATE TABLE products(
     stock_quantity INT NOT NULL DEFAULT 0,
     category_id INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (category_id) REFERENCES categories (category_id)
+    FOREIGN KEY (category_id) REFERENCES categories (category_id),
+    INDEX(category_id)
 );
 
 CREATE TABLE categories(
     category_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
-    description TEXT
+    description TEXT,
+    INDEX(category_name)
 );
 
 CREATE TABLE orders(
@@ -63,8 +66,4 @@ CREATE TABLE payments(
     transaction_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );
-
-
-
-                     
 
